@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Navigate, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import "./style.scss"
+import { UserContext } from "./context/AuthContext";
 function App() {
+  const user = localStorage.getItem("token")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      {user && <Route path="/" exact element={<Home/>}/>}
+      <Route path="/register" exact element={<Register/>}/>
+      <Route path="/login" exact element={<Login/>}/>
+      <Route path="/" exact element={<Navigate replace to="/login"/>}/>
+    </Routes>
   );
 }
 
