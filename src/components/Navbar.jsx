@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import Profile from "../img/user.png";
 const Navbar = () => {
-  const {username,id} = useContext(AuthContext);
+  const {username,id,setProfile} = useContext(AuthContext);
   const handleLogout = () => {
 		localStorage.removeItem("token");
 		window.location.reload();
@@ -11,7 +11,7 @@ const Navbar = () => {
     <div className='navbar'>
       <span className="logo">ChatHub</span>
       <div className="user">
-          <img src={Profile} alt="" />
+          <img src={Profile} alt=""  onClick={()=>setProfile(true)} />
         
         <div className="logout">
         <span>{username}</span>

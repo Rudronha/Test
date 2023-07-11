@@ -126,6 +126,63 @@ body{
       flex: 1;
       background-color: #3e3c61;
       position: relative;
+      .main_profile{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        align-items: center;
+        padding-top: 50px;
+        img{
+          cursor: pointer;
+            width: 150px;
+            height: 150px;
+        }
+        .user_profile_info{
+          color: #dddcf7;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          span{
+            padding-left: 30px;
+            font-size: 15px;
+            color: gray;
+          }
+          .username{
+            display: flex;
+            gap: 20px;
+            .update{
+              width: 300px;
+              height: 30px;
+              padding: 0px;
+              margin: 0px;
+              input{
+                font-family: 'Times New Roman', Times, serif;
+                background-color: #3e3c61;
+                outline: 0px;
+                border: none;
+                border-color:#3e3c61;
+                font-size: 20px;
+                color: #dddcf7;
+                height: 20px;
+              }
+              border-bottom: 2px solid #dddcf7;
+            }
+            .olduser{
+              width: 300px;
+              height: 40px;
+            }
+
+            img{
+              cursor: pointer;
+              width: 25px;
+              height: 25px;
+            }
+            padding-left: 35px;
+            font-size: 20px;
+          }
+        }
+      }
 
       .navbar {
         display: flex;
@@ -143,16 +200,26 @@ body{
             display: none;
           }
         }
+        .profile{
+          font-size: 20px;
+          display: flex;
+          gap: 15px;
+          img {
+            cursor: pointer;
+            height: 20px;
+            width: 20px;
+            object-fit: cover;
+          }
+        }
 
         .user {
           display: flex;
           gap: 10px;
-          
+
             img {
-              background-color: #ddddf7;
+              cursor: pointer;
               height: 40px;
               width: 40px;
-              border-radius: 50%;
               object-fit: cover;
             }
           .logout{

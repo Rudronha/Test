@@ -16,7 +16,7 @@ axios.interceptors.request.use(
 export const AuthContextProvider = ({children})=> {
   const [username, setUsername] = useState(null);
   const [id, setId] = useState(null);
-
+  const [ profile, setProfile ] = useState(false);
   useEffect(() => {
     //const result = axios.get('http://localhost:8000/api/profile');
       axios.get('http://localhost:8000/api/profile').then(response => {
@@ -28,7 +28,7 @@ export const AuthContextProvider = ({children})=> {
       //setUsername(result.data.username);
   }, []);
   return (
-    <AuthContext.Provider value={{ username, setUsername,id ,setId}}>
+    <AuthContext.Provider value={{ username, setUsername, id , setId, profile, setProfile}}>
       {children}
     </AuthContext.Provider>
   );
