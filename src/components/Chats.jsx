@@ -9,8 +9,7 @@ const Chats = ({ conversation, currentUser }) => {
   useEffect(() => {
    // console.log(currentUser);
     const friendId = conversation.members.find((m) => m !== currentUser);
-    //console.log(friendId);
-    //setCurrentChatuser(friendId);
+    
     const getUser = async () => { 
       try {
         const res = await axios(`http://localhost:8000/api/users?userId=${friendId}`);

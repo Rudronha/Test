@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Add from "../img/addAvatar.png";
+import Logo from "../img/squrelogo.png";
 
 const Register = () =>{
   const [data, setData] = useState({
@@ -39,7 +40,7 @@ const Register = () =>{
     return (
         <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">ChatHub</span>
+        <span className="logo"><img src={Logo} alt=""/>ChatHub</span>
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
           <input required 

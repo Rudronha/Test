@@ -11,9 +11,12 @@ const Navbar = () => {
     <div className='navbar'>
       <span className="logo">ChatHub</span>
       <div className="user">
-      <img src={Profile} alt="" />
+          <img src={Profile} alt="" />
+        
+        <div className="logout">
         <span>{username}</span>
         <button onClick={handleLogout}>logout</button>
+        </div>
       </div>
     </div>
   )

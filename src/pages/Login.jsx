@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 //import Add from "../img/addAvatar.png"
 import { Link } from "react-router-dom";
+import Logo from "../img/squrelogo.png";
 
 const Login = () =>{
 
@@ -36,7 +37,8 @@ const Login = () =>{
     return (
         <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">ChatHub</span>
+		
+        <span className="logo"><img src={Logo} alt=""/>ChatHub</span>
         <span className="title">Login</span>
         <form onSubmit={handleSubmit}>
           <input 

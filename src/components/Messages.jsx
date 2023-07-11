@@ -10,7 +10,6 @@ const Messages = () => {
   const { messages } = useContext(MessageContext);
   //console.log(currentChat);
   const scrollRef = useRef();
-  const exp={text:"new chat start! now"}
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -18,31 +17,13 @@ const Messages = () => {
 
   return (
     <div className="messages">
-      {messages.length?(
-        <>
           {messages.map(m=>(
             <div ref={scrollRef}>
             <Message owner={id === m.sender} messages={m} key={m._id}/>
             </div>
           ))} 
-        </>
-      ):(
-        <Message owner={true} messages={exp}/>
-      )} 
     </div>
   );
 };
-/*
-        <Message owner={false}/>
-        <Message owner={true}/>
-        <Message owner={false}/>
-        <Message owner={false}/>
-        <Message owner={true}/>
-        <Message owner={false}/>
-        <Message owner={false}/>
-        <Message owner={true}/>
-        <Message owner={false}/>
-        <Message owner={false}/>
- */
 
 export default Messages;

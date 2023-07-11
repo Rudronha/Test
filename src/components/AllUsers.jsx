@@ -8,11 +8,9 @@ const AllUsers = ({user})=> {
     const [online,setOnline] = useState([]);
    useEffect(()=>{
     axios.get(`http://localhost:8000/api/users?userId=${user}`).then(response => {
-    //console.log(response.data);
     setOnline(response.data);
     });
   },[]);
-  //console.log(online)
   return ((id!==user)?(
     <div className="userChat">
         <img src={Profile} alt="" />
