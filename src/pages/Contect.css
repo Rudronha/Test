@@ -1,0 +1,101 @@
+
+.section{
+    background-color: #9499ff;
+    height: 575px;
+    .container{
+        position: absolute;
+        top: 100px;
+        height: 500px;
+        width: 1270px;
+        display: flex;
+        flex-direction: row;
+        .content-section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 55%;
+            
+            color: white;
+            .title{
+                font-size: 25px;
+                padding-top: 25px;
+                
+            }
+            .content{
+                display: flex;
+                flex-direction: column;
+                padding-left: 100px;
+                padding-right: 5px;
+                .line{
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    .para{
+                        color: white;
+                        .hd{
+                            color: #5d5b8d;
+                        }
+                    }
+                }
+                
+            }
+        }
+        .form{
+            width: 30%;
+            height: 90%;
+            border: 1px solid white;
+            border-radius: 5px;
+            .title{
+                color: white;
+                padding-top: 80px;
+                padding-left: 40px;
+                padding-bottom: 20px;
+            }
+            .form-content{
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding-left: 40px;
+                .field{
+                    width: 300px;
+                    padding-bottom: 10px;
+                    border-bottom: 2px solid #5d5b8d;
+                    .input-t{
+                        color: #5d5b8d;
+                        outline: 0px;
+                        border: none;
+                        background-color: #9499ff;
+                        width: 280px;
+                        height: 30px;
+                        font-size: 15px;
+                    }
+                    .input-a{
+                        color: #5d5b8d;
+                        outline: 0px;
+                        border: none;
+                        background-color: #9499ff;
+                        width: 280px;
+                        height: 40px;
+                        font-size: 18px;
+                    }
+                    
+                }
+                .button{
+                    color: white;
+                    cursor: pointer;
+                    padding-top: 8px;
+                    text-align: center;
+                    font-size: 18px;
+                    width: 80px;
+                    height: 32px;
+                    border: none;
+                    border-radius: 8px;
+                    background-color:#5d5b8d;
+                }
+                .button:hover{
+                    background-color: #3e3c61;
+                }
+            }
+        }
+    }
+}

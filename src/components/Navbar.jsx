@@ -12,7 +12,6 @@ const Navbar = () => {
       <span className="logo">ChatHub</span>
       <div className="user">
           <img src={Profile} alt=""  onClick={()=>setProfile(true)} />
-        
         <div className="logout">
         <span>{username}</span>
         <button onClick={handleLogout}>logout</button>
