@@ -1,12 +1,11 @@
 
 import Img from "../img/img.png";
 import Attach from "../img/attach.png";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ConversationsContext } from '../context/ConversationsContext';
 import axios from "axios";
 import { MessageContext } from "../context/MessageContext";
-import { io } from 'socket.io-client'
 
 const Input = ({imptoSocket}) => {
   const { id } = useContext(AuthContext);

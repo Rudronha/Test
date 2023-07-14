@@ -18,9 +18,14 @@ export const ConversationsContextProvider = ({children})=> {
       }
     });
   },[id,newConversation]);
+
+  //
+  const DeleteConversation = (id) =>{
+    setConversations(conversations.filter(conversation => conversation._id!==id));
+  }
    //console.log(conversations);
     return (
-        <ConversationsContext.Provider value={{ conversations, setConversations ,currentChat,setCurrentChat,currentChatuser,setCurrentChatuser,newConversation,setNewConversation }}>
+        <ConversationsContext.Provider value={{ conversations, setConversations ,currentChat,setCurrentChat,currentChatuser,setCurrentChatuser,newConversation,setNewConversation,DeleteConversation }}>
           {children}
         </ConversationsContext.Provider>
       );

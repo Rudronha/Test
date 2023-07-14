@@ -1,17 +1,29 @@
-import React, { useContext, useState }  from "react"
+import React, { useContext, useEffect, useState }  from "react"
 import Back from "../img/back_arrow.png"
 import userProfile from "../img/user.png";
 import edituser from "../img/pencil.png";
 import submit from "../img/check.png";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
+import { redirect } from "react-router-dom";
 const Profile = () => {
-    const {setProfile} = useContext(AuthContext);
-    const [ update,setUpdate ] = useState(false);
-    const [data, setData] = useState("Harsh");
+    const {id,setProfile,username, update,setUpdate} = useContext(AuthContext);
+    const [data, setData] = useState(username);
 
     const handleChange = ({ currentTarget: input }) => {
 		setData(input.value);
 	};
+   
+    const onUpdate=async()=>{
+        await axios.put(`http://localhost:8000/api/users/${id}`, {
+            userId: id,
+            username:data,
+          }).then(res => {
+            localStorage.setItem("token", res.data.data);
+            setUpdate(false);
+            window.location = "/";
+          });
+    };
     return(
         <>
         <div className='navbar'>
@@ -31,10 +43,10 @@ const Profile = () => {
                                 value={data}
                             />
                          </div>
-                        <img src={submit} alt=""/>
+                        <img src={submit} alt="" onClick={onUpdate}/>
                     </div>
                 ):(
-                    <div className="username"><div className="olduser">Harsh</div><img src={edituser}  alt="" onClick={()=>setUpdate(true)}/></div>
+                    <div className="username"><div className="olduser">{username}</div><img src={edituser}  alt="" onClick={()=>setUpdate(true)}/></div>
                 )}
             </div>
         </div>

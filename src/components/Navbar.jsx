@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import Profile from "../img/user.png";
 const Navbar = () => {
@@ -7,6 +7,7 @@ const Navbar = () => {
 		localStorage.removeItem("token");
 		window.location.reload();
 	};
+  
   return (
     <div className='navbar'>
       <span className="logo">ChatHub</span>

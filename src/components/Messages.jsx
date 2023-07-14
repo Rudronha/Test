@@ -1,7 +1,5 @@
-import { useEffect, useContext, useState, useRef } from "react";
+import { useEffect, useContext, useRef } from "react";
 import Message from "./Message";
-import { ConversationsContext } from '../context/ConversationsContext';
-import axios from "axios"
 import { AuthContext } from "../context/AuthContext";
 import { MessageContext } from "../context/MessageContext";
 

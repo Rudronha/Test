@@ -6,9 +6,13 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import "./style.scss"
-import { UserContext } from "./context/AuthContext";
+import { AuthContext, UserContext } from "./context/AuthContext";
+import { useContext } from "react";
 function App() {
+ 
   const user = localStorage.getItem("token")
+  
+  
   return (
     <Routes>
       {user && <Route path="/" exact element={<Home/>}/>}

@@ -2,7 +2,6 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import Profile from "../img/user.png";
 import React from "react";
-import { json } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { ConversationsContext } from "../context/ConversationsContext";
 const Search = ({users}) => {

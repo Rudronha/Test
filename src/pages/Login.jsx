@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
-//import Add from "../img/addAvatar.png"
 import { Link } from "react-router-dom";
 import Logo from "../img/squrelogo.png";
 
@@ -20,7 +19,7 @@ const Login = () =>{
 			const url = "http://localhost:8000/api/auth";
 			const { data: res } = await axios.post(url, data);
 			localStorage.setItem("token", res.data);
-			console.log(res.data)
+			//console.log(res.data)
 			window.location = "/";
 		} catch (error) {
 			if (

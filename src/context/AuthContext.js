@@ -17,18 +17,19 @@ export const AuthContextProvider = ({children})=> {
   const [username, setUsername] = useState(null);
   const [id, setId] = useState(null);
   const [ profile, setProfile ] = useState(false);
+  const [ update,setUpdate ] = useState(false);
+  
+  
   useEffect(() => {
-    //const result = axios.get('http://localhost:8000/api/profile');
-      axios.get('http://localhost:8000/api/profile').then(response => {
-      //console.log(response.data);
+      //console.log(localStorage.getItem("token"));
+      axios.get('http://localhost:8000/api/users/profile',{ headers: { "authorization":localStorage.getItem("token")}}).then(response => {
+     // console.log(response.data);
       setId(response.data._id);
       setUsername(response.data.username);
     });
-      //setId(result.data.userId);
-      //setUsername(result.data.username);
-  }, []);
+  }, [!update]);
   return (
-    <AuthContext.Provider value={{ username, setUsername, id , setId, profile, setProfile}}>
+    <AuthContext.Provider value={{ username, setUsername, id , setId, profile, setProfile,update,setUpdate}}>
       {children}
     </AuthContext.Provider>
   );

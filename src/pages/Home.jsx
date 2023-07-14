@@ -14,7 +14,10 @@ const Home = () => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { currentChat } = useContext(ConversationsContext);
   const { messages, setMessages, newMessage } = useContext(MessageContext);
-
+  
+   
+  
+  
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
     socket.current.on("getMessage", (data) => {
