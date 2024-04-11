@@ -10,22 +10,21 @@ const Sidebar = ({users}) => {
   const { id, profile } = useContext(AuthContext);
   const { conversations,setCurrentChat } = useContext(ConversationsContext);
   
-
   return (
     <div className="sidebar">
       {profile?(
         <Profile/>
       ):
       (
-      <>
-      <Navbar/>
-        <Search users={users}/>
-        {conversations.map(c => (
-        <div onClick={()=>setCurrentChat(c)} key={c._id}>
-          <Chats conversation={c} currentUser={id} key={c._id}/> 
-        </div>
-        ))}
-      </>  
+        <>
+          <Navbar/>
+          <Search users={users}/>
+          {conversations.map(c => (
+          <div onClick={()=>setCurrentChat(c)} key={c._id}>
+            <Chats conversation={c} currentUser={id} key={c._id}/> 
+          </div>
+          ))}
+        </>  
       )}
       
     </div>

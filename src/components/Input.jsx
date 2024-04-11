@@ -12,8 +12,6 @@ const Input = ({imptoSocket}) => {
   const { currentChat } = useContext(ConversationsContext);
   const { messages,setMessages,newMessage, setNewMessage } = useContext(MessageContext);
   
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {

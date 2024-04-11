@@ -1,12 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import Logo from "../img/squrelogo.png";
-
+import { postLoginData } from "../apiCalls";
 const Login = () =>{
-
-  const [data, setData] = useState({ email: "", password: "" });
+  	const [data, setData] = useState({ email: "", password: "" });
 	const [error, setError] = useState("");
 
 	const handleChange = ({ currentTarget: input }) => {
@@ -15,21 +13,7 @@ const Login = () =>{
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		try {
-			const url = "http://localhost:8000/api/auth";
-			const { data: res } = await axios.post(url, data);
-			localStorage.setItem("token", res.data);
-			//console.log(res.data)
-			window.location = "/";
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
-		}
+		postLoginData(data,setError);
 	};
 
 

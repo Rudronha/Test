@@ -3,10 +3,9 @@ import Message from "./Message";
 import { AuthContext } from "../context/AuthContext";
 import { MessageContext } from "../context/MessageContext";
 
-const Messages = () => {
+const Messages = ({friend}) => {
   const { id } = useContext(AuthContext);
   const { messages } = useContext(MessageContext);
-  //console.log(currentChat);
   const scrollRef = useRef();
 
   useEffect(() => {
@@ -17,7 +16,7 @@ const Messages = () => {
     <div className="messages">
           {messages.map(m=>(
             <div ref={scrollRef}>
-            <Message owner={id === m.sender} messages={m} key={m._id}/>
+            <Message owner={id === m.sender} messages={m} friend={friend} key={m._id}/>
             </div>
           ))} 
     </div>

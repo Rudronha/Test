@@ -4,27 +4,24 @@ import Profile from "../img/user.png";
 import React from "react";
 import { AuthContext } from "../context/AuthContext";
 import { ConversationsContext } from "../context/ConversationsContext";
+import { getUserList } from "../apiCalls";
 const Search = ({users}) => {
   const [ value, setValue ] = useState(null);
   const [ AllUsers,setAllUsers ] = useState([]);
   const { id } = useContext(AuthContext);
   const { setNewConversation } = useContext(ConversationsContext);
   useEffect(()=>{
-    axios.get(`http://localhost:8000/api/users/usersList`).then(res => {
-      //console.log(res.data);
-        setAllUsers(res.data);
-    });
+    getUserList(setAllUsers);
   },[]);
   const onChange = (evevt)=>{
       setValue(evevt.target.value);
   }
-    async function AddNewCoversation(user) {
-      const res =await axios.post('http://localhost:8000/api/conversations',{ senderId:id,receiverId:user._id});
-      console.log(res);
-      setNewConversation(res);
-    }
+  async function AddNewCoversation(user) {
+    const res =await axios.post('http://localhost:8000/api/conversations',{ senderId:id,receiverId:user._id});
+    console.log(res);
+    setNewConversation(res);
+  }
 
-  //console.log(AllUsers)
   return (
     <div>
     <div className="search">
@@ -44,7 +41,7 @@ const Search = ({users}) => {
         return searchUser&&curr_user.startsWith(searchUser);
       }).map(user=>(
         <div className="userChat" onClick={()=>AddNewCoversation(user)}>
-          <img src={Profile} alt="" />
+          <img src={user.profilePhoto?(`http://localhost:3000/assets/avtar/${user.profilePhoto}`):Profile} alt="" />
           <div className="userChatInfo">
             <span className="conversationName">{user?.username}</span>
           </div>

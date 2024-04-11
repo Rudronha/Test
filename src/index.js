@@ -6,6 +6,7 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { ConversationsContext, ConversationsContextProvider } from './context/ConversationsContext';
 import { MessageContextProvider } from './context/MessageContext';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthContextProvider>

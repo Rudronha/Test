@@ -1,5 +1,6 @@
 import {createContext, useEffect, useState} from "react";
 import axios from "axios";
+import img from "../img/user.png";
 
 export const AuthContext = createContext();
 const user = localStorage.getItem("token");
@@ -18,18 +19,19 @@ export const AuthContextProvider = ({children})=> {
   const [id, setId] = useState(null);
   const [ profile, setProfile ] = useState(false);
   const [ update,setUpdate ] = useState(false);
-  
+  const [ proPhoto,setProPhoto ] = useState(null);
   
   useEffect(() => {
       //console.log(localStorage.getItem("token"));
       axios.get('http://localhost:8000/api/users/profile',{ headers: { "authorization":localStorage.getItem("token")}}).then(response => {
-     // console.log(response.data);
+      console.log(response.data);
+      setProPhoto(response.data.profilePhoto);
       setId(response.data._id);
       setUsername(response.data.username);
     });
-  }, [!update]);
+  }, [update]);
   return (
-    <AuthContext.Provider value={{ username, setUsername, id , setId, profile, setProfile,update,setUpdate}}>
+    <AuthContext.Provider value={{ username, setUsername, id , setId, profile, setProfile,update,setUpdate,proPhoto,setProPhoto}}>
       {children}
     </AuthContext.Provider>
   );

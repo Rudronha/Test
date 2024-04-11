@@ -1,8 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
-import Profile from "../img/user.png";
+import userProfile from "../img/user.png";
+
+
 const Navbar = () => {
-  const {username,id,setProfile} = useContext(AuthContext);
+  const {username,setProfile,proPhoto} = useContext(AuthContext);
   const handleLogout = () => {
 		localStorage.removeItem("token");
 		window.location.reload();
@@ -12,7 +14,7 @@ const Navbar = () => {
     <div className='navbar'>
       <span className="logo">ChatHub</span>
       <div className="user">
-          <img src={Profile} alt=""  onClick={()=>setProfile(true)} />
+          <img src={proPhoto?(`http://localhost:3000/assets/avtar/${proPhoto}`):userProfile} alt=""  onClick={()=>setProfile(true)} />
         <div className="logout">
         <span>{username}</span>
         <button onClick={handleLogout}>logout</button>

@@ -1,11 +1,9 @@
 import {createContext, useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { AuthContext } from "./AuthContext";
 import { ConversationsContext } from "./ConversationsContext";
 export const MessageContext = createContext();
 
 export const MessageContextProvider = ({children})=> {
-    const { id } = useContext(AuthContext);
     const { currentChat } = useContext(ConversationsContext);
     const [ messages, setMessages ] = useState([]);
     const [ newMessage, setNewMessage ] = useState("");
@@ -17,8 +15,13 @@ export const MessageContextProvider = ({children})=> {
         setMessages(res.data);
     });
   },[currentChat]);
+
+  const DeleteMessage = (text) =>{
+    setMessages(messages.filter(message => message.text!==text));
+  }
+
   return (
-    <MessageContext.Provider value={{ messages, setMessages ,newMessage, setNewMessage}}>
+    <MessageContext.Provider value={{ messages, setMessages ,newMessage, setNewMessage, DeleteMessage}}>
       {children}
     </MessageContext.Provider>
   );

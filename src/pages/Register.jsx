@@ -1,8 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Add from "../img/addAvatar.png";
 import Logo from "../img/squrelogo.png";
+import { postRegisterData } from "../apiCalls";
 
 const Register = () =>{
   const [data, setData] = useState({
@@ -10,33 +10,31 @@ const Register = () =>{
 		email: "",
 		password: "",
 	});
+  const [profilePhoto, setProfilePhoto] = useState(null);
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
 
 	const handleChange = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.value });
+		  setData({ ...data, [input.name]: input.value });
 	};
+  
+  const handlePhotoChange = async(event) => {
+    const file = event.target.files[0];
+    console.log(file);
+    setProfilePhoto(file);
+  };
 
 	const handleSubmit = async (e) => {
+
 		e.preventDefault();
-		try {
-			const url = "http://localhost:8000/api/users";
-			const { data: res } = await axios.post(url, data);
-			navigate("/login");
-			console.log(res.message);
-		} catch (error) {
-			if (
-				error.response &&
-				error.response.status >= 400 &&
-				error.response.status <= 500
-			) {
-				setError(error.response.data.message);
-			}
-		}
+    const formData = new FormData();
+    formData.append("username", data.username);
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    formData.append("profilePhoto", profilePhoto);
+
+    postRegisterData(formData,setError,navigate);
 	};
-
-
-
     return (
         <div className="formContainer">
       <div className="formWrapper">
@@ -66,9 +64,15 @@ const Register = () =>{
 						onChange={handleChange}
 						value={data.password} 
           />
-          <input style={{display:"none"}} type="file" id="file" name="file"/>
+          <input
+            style={{display:"none"}} 
+            type="file" 
+            id="file" 
+            name="profilePhoto"
+            onChange={handlePhotoChange}
+          />
           <label htmlFor="file">
-            <img src={Add} alt=""/>
+            <img src={profilePhoto?URL.createObjectURL(profilePhoto):Add} alt=""/>
             <span>Add an avatar</span>
           </label>
           {error && <div>{error}</div>}

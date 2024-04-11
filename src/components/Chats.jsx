@@ -1,31 +1,20 @@
 import Profile from "../img/user.png";
 import React,{ useEffect, useState } from "react";
-import axios from "axios";
-
+import { getUser } from "../apiCalls";
 
 const Chats = ({ conversation, currentUser }) => {
   const [user, setUser] = useState(null);
   
   useEffect(() => {
-   // console.log(currentUser);
     const friendId = conversation.members.find((m) => m !== currentUser);
-    
-    const getUser = async () => { 
-      try {
-        const res = await axios(`http://localhost:8000/api/users?userId=${friendId}`);
-        setUser(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getUser();
+    getUser(friendId,setUser);
   }, [conversation._id]);
 
 
   return (
     <div className="chats">
         <div className="userChat" >
-          <img src={Profile} alt="" />
+          <img src={user?.profilePhoto?(`http://localhost:3000/assets/avtar/${user.profilePhoto}`):Profile} alt="" />
           <div className="userChatInfo">
             <span className="conversationName">{user?.username}</span>
           </div>

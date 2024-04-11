@@ -8,15 +8,12 @@ import { MessageContext } from '../context/MessageContext'
 
 
 const Home = () => {
-  const { user, id } = useContext(AuthContext);
+  const { id } = useContext(AuthContext);
   const socket = useRef();
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const { currentChat } = useContext(ConversationsContext);
-  const { messages, setMessages, newMessage } = useContext(MessageContext);
-  
-   
-  
+  const { setMessages, newMessage } = useContext(MessageContext);
   
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
@@ -38,11 +35,7 @@ const Home = () => {
   useEffect(() => {
     socket.current.emit("addUser", id);
     socket.current.on("getUsers", (users) => {
-    // console.log(users);
-     setOnlineUsers(users);
-      /*setOnlineUsers(
-        user.followings.filter((f) => users.some((u) => u.userId === f))
-      );*/
+      setOnlineUsers(users);
     });
   }, [id]);
   
